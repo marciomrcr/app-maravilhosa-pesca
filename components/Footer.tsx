@@ -11,10 +11,10 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Image
-                src="/hero.jpg"
+                src="/logo.png"
                 alt="Logo"
-                width={50}
-                height={50}
+                width={100}
+                height={100}
                 className="rounded-full"
               />
               <span className="text-xl font-bold">Maravilhosa Pesca</span>

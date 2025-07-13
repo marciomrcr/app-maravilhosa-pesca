@@ -49,10 +49,10 @@ export default function HeroCarousel() {
           <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-4 z-10">
             <div className="flex items-center gap-4 mb-8">
               <Image
-                src="/hero.jpg"
+                src="/logo.png"
                 alt="Logo Maravilhosa Pesca"
-                width={80}
-                height={80}
+                width={160}
+                height={160}
                 className="rounded-full"
               />
               <h1 className="text-4xl lg:text-6xl font-bold">
