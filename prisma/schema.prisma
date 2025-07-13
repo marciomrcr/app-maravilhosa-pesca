@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+
+enum TipoMovimentacao {
+  ENTRADA
+  SAIDA
+}
+
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Cliente {
+  id        String     @id @default(uuid())
+  nome      String
+  telefone  String
+  enderecos Endereco[]
+  pedidos   Pedido[]
+  createdAt DateTime   @default(now())
+}
+
+model Endereco {
+  id              String   @id @default(uuid())
+  cliente         Cliente? @relation(fields: [clienteId], references: [id])
+  clienteId       String?
+  bairro          String
+  rua             String
+  numero          String
+  pontoReferencia String?
+  taxaEntrega     Float
+  pedidos         Pedido[]
+}
+
+model Produto {
+  id            String                @id @default(uuid())
+  nome          String
+  descricao     String?
+  categoria     String
+  unidade       String
+  preco         Float
+  precoCusto    Float
+  fornecedor    String?
+  estoque       Int
+  ativo         Boolean               @default(true)
+  deletedAt     DateTime?
+  promocoes     Promocao[]
+  itensPedido   ItemPedido[]
+  movimentacoes MovimentacaoEstoque[]
+}
+
+model Promocao {
+  id               String  @id @default(uuid())
+  produto          Produto @relation(fields: [produtoId], references: [id])
+  produtoId        String
+  diaSemana        Int // 0=Domingo, 1=Segunda, ...
+  precoPromocional Float
+}
+
+model Pedido {
+  id             String       @id @default(uuid())
+  cliente        Cliente      @relation(fields: [clienteId], references: [id])
+  clienteId      String
+  status         String
+  total          Float
+  data           DateTime     @default(now())
+  formaPagamento String
+  bairroEntrega  String
+  endereco       Endereco?    @relation(fields: [enderecoId], references: [id])
+  enderecoId     String?
+  itens          ItemPedido[]
+  venda          Venda?
+}
+
+model ItemPedido {
+  id            String  @id @default(uuid())
+  pedido        Pedido  @relation(fields: [pedidoId], references: [id])
+  pedidoId      String
+  produto       Produto @relation(fields: [produtoId], references: [id])
+  produtoId     String
+  quantidade    Int
+  precoUnitario Float
+}
+
+model Venda {
+  id              String   @id @default(uuid())
+  pedido          Pedido   @relation(fields: [pedidoId], references: [id])
+  pedidoId        String   @unique
+  data            DateTime @default(now())
+  valorPago       Float
+  metodoPagamento String
+}
+
+model MovimentacaoEstoque {
+  id         String           @id @default(uuid())
+  produto    Produto          @relation(fields: [produtoId], references: [id], onDelete: Cascade)
+  produtoId  String
+  tipo       TipoMovimentacao
+  quantidade Int
+  descricao  String?
+  observacao String?
+  data       DateTime         @default(now())
+}
