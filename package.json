@@ -4,9 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate",
+    "db:reset": "prisma migrate reset --force && npm run db:seed",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "setup:env": "tsx scripts/setup-env.ts",
+    "check:env": "node scripts/check-env.js",
+    "check:permissions": "node scripts/check-permissions.js"
   },
   "dependencies": {
     "@prisma/client": "^6.11.1",
