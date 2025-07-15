@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Iniciar App Maravilhosa Pesca",
+      "type": "shell",
+      "command": "cd c:/www/app-maravilhosa-pesca && npm run dev",
+      "group": "build",
+      "problemMatcher": [],
+      "isBackground": true
+    }
+  ]
+}

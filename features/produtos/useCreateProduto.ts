@@ -1,14 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { ProdutoFormValues } from "./ProdutoForm";
 
 export function useCreateProduto() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (data: {
-      nome: string;
-      categoria: string;
-      unidade: string;
-      preco: number;
-    }) => {
+    mutationFn: async (data: ProdutoFormValues) => {
       const res = await fetch("/api/produtos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

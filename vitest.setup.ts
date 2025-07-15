@@ -1,4 +1,5 @@
 // Setup para mocks globais
+import "@testing-library/jest-dom";
 import { vi } from "vitest";
 
 // Mock do prisma para testes

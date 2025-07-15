@@ -176,7 +176,7 @@ export default function DashboardPage() {
                 ) : produtos.error ? (
                   <p className="text-red-500">Erro ao carregar</p>
                 ) : (
-                  <p className="text-3xl font-extrabold text-green-700 transition-transform duration-300 group-hover:scale-110">
+                  <p className="text-3xl font-extrabold text-green-700 transition-transform duration-300 ">
                     {produtos.data?.length ?? 0}
                   </p>
                 )}
@@ -188,7 +188,7 @@ export default function DashboardPage() {
                   Ver produtos
                 </a>
                 {/* Microinteração: efeito de brilho ao passar o mouse */}
-                <span className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-green-200 via-transparent to-green-200 blur-sm"></span>
+                <span className="absolute inset-0 pointer-events-none "></span>
               </div>
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                 <h3 className="text-lg font-semibold text-yellow-800 mb-2">

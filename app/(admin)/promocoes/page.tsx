@@ -1,3 +1,5 @@
+"use client";
+
 import { Loading } from "@/components/ui/Loading";
 import { Modal } from "@/components/ui/Modal";
 import { Toast } from "@/components/ui/Toast";
@@ -33,9 +35,9 @@ export default function PromocoesPage() {
   return (
     <div className="container mx-auto py-8">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Promoções</h1>
+        <h1 className="text-2xl text-blue-950 font-bold">Promoções</h1>
         <button
-          className="bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition"
+          className="bg-primary text-blue-950 px-4 py-2 rounded hover:bg-primary/90 transition"
           onClick={() => setModalOpen(true)}
         >
           Adicionar Promoção
