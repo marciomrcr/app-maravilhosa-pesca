@@ -3,26 +3,32 @@
 import imageSrc from "@/public/login.png";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Example() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const router = useRouter();
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+
+    console.log("Tentando fazer login com:", email);
+
     const res = await signIn("credentials", {
       redirect: false,
       email,
       password,
     });
+
+    console.log("Resultado do login:", res);
+
     if (res?.ok) {
-      router.push("/dashboard");
+      console.log("Login bem-sucedido, redirecionando para dashboard");
+      window.location.href = "/dashboard";
     } else {
+      console.log("Falha no login:", res?.error);
       setError("Email ou senha inválidos");
     }
   }

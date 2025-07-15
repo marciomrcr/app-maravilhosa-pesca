@@ -14,23 +14,21 @@ export default withAuth(
       return NextResponse.redirect(url);
     }
 
-    // Se o usuário estiver logado e tentar acessar a página de login, redirecione para o dashboard
-    if (token && pathname === "/login") {
-      const url = req.nextUrl.clone();
-      url.pathname = "/dashboard";
-      return NextResponse.redirect(url);
-    }
-
     return NextResponse.next();
   },
   {
     callbacks: {
-      authorized: ({ token }) => !!token,
+      authorized: ({ token, req }) => {
+        // Permite acesso à página de login sempre
+        if (req.nextUrl.pathname === "/login") return true;
+        // Para outras rotas protegidas, requer token
+        return !!token;
+      },
     },
   }
 );
 
-// Aplica o middleware a todas as rotas, exceto as da API, etc.
+// Aplica o middleware apenas às rotas protegidas
 export const config = {
-  matcher: ["/dashboard/:path*", "/login"],
+  matcher: ["/dashboard/:path*"],
 };

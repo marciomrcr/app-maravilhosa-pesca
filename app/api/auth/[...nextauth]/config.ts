@@ -12,16 +12,37 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null;
+        console.log("Tentativa de autorização com:", credentials?.email);
+
+        if (!credentials?.email || !credentials?.password) {
+          console.log("Credenciais inválidas");
+          return null;
+        }
+
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
         });
-        if (!user || !user.password) return null;
+
+        console.log("Usuário encontrado:", user ? "Sim" : "Não");
+
+        if (!user || !user.password) {
+          console.log("Usuário não encontrado ou sem senha");
+          return null;
+        }
+
         const isValid = await bcrypt.compare(
           credentials.password,
           user.password
         );
-        if (!isValid) return null;
+
+        console.log("Senha válida:", isValid);
+
+        if (!isValid) {
+          console.log("Senha inválida");
+          return null;
+        }
+
+        console.log("Login autorizado para:", user.email);
         return { id: user.id, email: user.email };
       },
     }),
