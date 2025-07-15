@@ -28,13 +28,13 @@ export default function HomePage() {
             <ProductCard
               title="Frutos do Mar"
               description="Camarões, lagostas, lulas, polvos e outros frutos do mar"
-              imageSrc="https://img.freepik.com/fotos-gratis/camarao-tigre-fresco-gelo_23-2148740419.jpg"
+              imageSrc="/hero2.jpg"
               href="#frutos"
             />
             <ProductCard
               title="Pescados Congelados"
               description="Opções práticas e de qualidade para seu dia a dia"
-              imageSrc="https://img.freepik.com/fotos-gratis/peixe-congelado-no-gelo_23-2148740423.jpg"
+              imageSrc="/hero3.jpg"
               href="#congelados"
             />
           </div>
@@ -98,43 +98,6 @@ export default function HomePage() {
                 <p className="text-gray-600">Segunda a Sábado: 7h às 18h</p>
                 <p className="text-gray-600">Domingo: 7h às 12h</p>
               </div>
-            </div>
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <form className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Nome
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    E-mail
-                  </label>
-                  <input
-                    type="email"
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Mensagem
-                  </label>
-                  <textarea
-                    rows={4}
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full px-6 py-3 bg-blue-900 text-white rounded-lg font-bold hover:bg-blue-800 transition"
-                >
-                  Enviar Mensagem
-                </button>
-              </form>
             </div>
           </div>
         </div>

@@ -13,9 +13,11 @@ export default function Navbar() {
         <Image
           src="/logo.png"
           alt="Logo"
-          width={60}
-          height={60}
+          width={40}
+          height={50}
+          loading="lazy"
           className="rounded-full"
+          style={{ width: "auto", height: "50px" }}
         />
         <span className="text-2xl font-bold text-white">Maravilhosa Pesca</span>
       </div>

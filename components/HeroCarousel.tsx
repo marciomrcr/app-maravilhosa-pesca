@@ -21,7 +21,7 @@ export default function HeroCarousel() {
     <section className="w-full bg-[#1E3A8A] pt-16 md:pt-2">
       <div className="mx-auto my-auto relative">
         {/* Hero section with carousel, overlay, and text */}
-        <div className="relative h-[400px] lg:min-h-screen rounded-lg overflow-hidden">
+        <div className="relative h-[500px] lg:min-h-screen rounded-lg overflow-hidden">
           {/* Carousel Images */}
           <div className="relative w-full h-full">
             {slides.map((slide, index) => (
@@ -51,8 +51,8 @@ export default function HeroCarousel() {
               <Image
                 src="/logo.png"
                 alt="Logo Maravilhosa Pesca"
-                width={160}
-                height={160}
+                width={120}
+                height={140}
                 className="rounded-full"
               />
               <h1 className="text-4xl lg:text-6xl font-bold">
