@@ -3,6 +3,33 @@ import bcrypt from "bcryptjs";
 import { TipoMovimentacao } from "../app/generated/prisma";
 
 async function main() {
+  // Produtos extras para teste de campos opcionais
+  await prisma.produto.create({
+    data: {
+      nome: "Filé de Pirarucu",
+      preco: 55,
+      precoCusto: 40,
+      estoque: 10,
+      ativo: true,
+      categoria: "",
+      unidade: "",
+      // Sem fornecedor, descricao
+    },
+  });
+
+  await prisma.produto.create({
+    data: {
+      nome: "Sururu",
+      categoria: "Frutos do Mar",
+      preco: 25,
+      precoCusto: 15,
+      estoque: 5,
+      ativo: false,
+      unidade: "kg",
+      fornecedor: "",
+      descricao: "",
+    },
+  });
   // Clientes e Endereços
   await prisma.cliente.create({
     data: {
@@ -151,10 +178,10 @@ async function main() {
   });
 
   // Usuário para teste de login
-  const email = "admin@teste.com";
+  const email = "admin@email.com";
   const password = "123456";
-  // Remove usuário existente para garantir hash correto
-  await prisma.user.deleteMany({ where: { email } });
+  // Remove TODOS os usuários existentes para garantir hash correto e evitar duplicidade
+  await prisma.user.deleteMany({});
   const hashedPassword = await bcrypt.hash(password, 10);
   await prisma.user.create({
     data: {

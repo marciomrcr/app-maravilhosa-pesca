@@ -19,7 +19,9 @@ export default function Navbar() {
           className="rounded-full"
           style={{ width: "auto", height: "50px" }}
         />
-        <span className="text-2xl font-bold text-white">Maravilhosa Pesca</span>
+        <span className="text-2xl font-bold text-white">
+          Pescados &amp; Mariscos
+        </span>
       </div>
       <div className="hidden md:flex items-center gap-6">
         <Link href="/" className="text-white hover:text-blue-200">

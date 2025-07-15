@@ -35,6 +35,8 @@ model Cliente {
   enderecos Endereco[]
   pedidos   Pedido[]
   createdAt DateTime   @default(now())
+
+  updatedAt DateTime @updatedAt
 }
 
 model Endereco {
@@ -47,6 +49,8 @@ model Endereco {
   pontoReferencia String?
   taxaEntrega     Float
   pedidos         Pedido[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model Produto {
@@ -64,14 +68,19 @@ model Produto {
   promocoes     Promocao[]
   itensPedido   ItemPedido[]
   movimentacoes MovimentacaoEstoque[]
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+  deleted       Boolean               @default(false)
 }
 
 model Promocao {
-  id               String  @id @default(uuid())
-  produto          Produto @relation(fields: [produtoId], references: [id])
+  id               String   @id @default(uuid())
+  produto          Produto  @relation(fields: [produtoId], references: [id])
   produtoId        String
   diaSemana        Int // 0=Domingo, 1=Segunda, ...
   precoPromocional Float
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
 
 model Pedido {
@@ -87,16 +96,24 @@ model Pedido {
   enderecoId     String?
   itens          ItemPedido[]
   venda          Venda?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  deletedAt      DateTime?
+  deleted        Boolean      @default(false)
 }
 
 model ItemPedido {
-  id            String  @id @default(uuid())
-  pedido        Pedido  @relation(fields: [pedidoId], references: [id])
+  id            String    @id @default(uuid())
+  pedido        Pedido    @relation(fields: [pedidoId], references: [id])
   pedidoId      String
-  produto       Produto @relation(fields: [produtoId], references: [id])
+  produto       Produto   @relation(fields: [produtoId], references: [id])
   produtoId     String
   quantidade    Int
   precoUnitario Float
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime?
+  deleted       Boolean   @default(false)
 }
 
 model Venda {
@@ -106,6 +123,8 @@ model Venda {
   data            DateTime @default(now())
   valorPago       Float
   metodoPagamento String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model MovimentacaoEstoque {
@@ -117,4 +136,8 @@ model MovimentacaoEstoque {
   descricao  String?
   observacao String?
   data       DateTime         @default(now())
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+  deletedAt  DateTime?
+  deleted    Boolean          @default(false)
 }

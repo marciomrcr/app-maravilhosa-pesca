@@ -51,12 +51,18 @@ export default function HeroCarousel() {
               <Image
                 src="/logo.png"
                 alt="Logo Maravilhosa Pesca"
-                width={120}
+                width={140}
                 height={140}
                 className="rounded-full"
               />
-              <h1 className="text-4xl lg:text-6xl font-bold">
-                Maravilhosa Pesca
+              <h1 className="text-4xl lg:text-6xl font-bold text-[#0E48B9]">
+                Pescados
+                <span className="text-4xl lg:text-6xl font-bold text-amber-300">
+                  &amp;
+                </span>
+                <span className="text-4xl lg:text-6xl font-bold text-white">
+                  Mariscos
+                </span>
               </h1>
             </div>
             <div className="bg-black/10 p-6 rounded-lg backdrop-blur-sm max-w-2xl">
